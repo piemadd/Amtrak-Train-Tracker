@@ -31,6 +31,7 @@ body {
 
 a {
 	color: var(--fg-primary);
+	text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6, b {
@@ -51,7 +52,6 @@ header {
 }
 
 header h2:last-child {
-	align-self: flex-end;
 	text-align: right;
 }
 
@@ -62,7 +62,8 @@ header h1 {
 
 header h2 {
 	font-size: 1rem;
-	align-self: flex-start;
+	align-self: flex-end;
+	text-align: left;
 	flex: 1;
 }
 
@@ -124,6 +125,7 @@ article .status {
 	align-items: center;
 	justify-content: center;
 	text-align: center;
+	margin-top: -2px;
 }
 
 artice .on-time {
