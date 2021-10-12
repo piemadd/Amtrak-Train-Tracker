@@ -8,28 +8,24 @@
 		<link href='css/style.css' rel='stylesheet'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
 		<title>Amtrak Tracker</title>
+
+		<link rel="manifest" href="manifest.json" />
+		<!-- ios support -->
+		<link rel="apple-touch-icon" href="images/icons/icon-72.png" />
+		<link rel="apple-touch-icon" href="images/icons/icon-512.png" />
+		<meta name="apple-mobile-web-app-status-bar" content="#212529" />
+		<meta name="theme-color" content="#212529" />
+
 	</head>
 	<body>
 		<header>
 			<h2></h2>
 			<h1>Trains</h1>
-			<h2><a href="">About</a></h2> <!-- don't ask -->
+			<h2><a href="/about.html">About</a></h2> <!-- don't ask -->
 		</header>
 
 		<main id="trains_holder">
-			<article>
-				<div class='meta'>
-					<div class='title'>
-						<h3>Empire Builder</h3>
-						<div class='status'>On Time</div>
-					</div>
-					<p class='route'>CHI &rarr; SEA</p>
-					<p class='location'><span class='tag'>Location:</span> Chicago Union Station</p>
-				</div>
-
-				<div class='number'>17</div>
-			</article>
-			<article class='add' onclick="addTrain()">
+			<article class='add' onclick="window.location.replace('/new.html');">
 				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M78.83333,21.5v57.33333h-57.33333v14.33333h57.33333v57.33333h14.33333v-57.33333h57.33333v-14.33333h-57.33333v-57.33333z"></path></g></g></svg>
 				<div>Add a Train</div>
 			</article>

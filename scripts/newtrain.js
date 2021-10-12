@@ -14,7 +14,7 @@ fetch('https://api.amtrak.piemadd.com/v1/trains', {
         'Cache-Control': 'no-cache',
         'TE': 'trailers'
     }
-}).then(response => response.json()).then((data) => {
+}).then(response => response.json()).then(async (data) => {
 	let trains_holder = document.getElementById('trains_holder');
 
 	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -27,8 +27,8 @@ fetch('https://api.amtrak.piemadd.com/v1/trains', {
 		'No Data': 'completed',
 	}
 
-	Object.keys(data).forEach((key) => {
-		data[key].forEach((train_obj) => {
+	Object.keys(data).forEach(async (key) => {
+		data[key].forEach(async (train_obj) => {
 
 			let sch_dep_obj = new Date(train_obj.origSchDep);
 
@@ -52,7 +52,7 @@ fetch('https://api.amtrak.piemadd.com/v1/trains', {
 
 			let train_card = document.createElement('article');
 
-			train_card.setAttribute("onclick", `addTrain(${train_obj.objectID})`);
+			train_card.setAttribute("onclick", `addTrain(${train_obj.trainNum}, ${train_obj.objectID})`);
 
 			train_card.innerHTML = inner_html;
 
@@ -61,7 +61,31 @@ fetch('https://api.amtrak.piemadd.com/v1/trains', {
 	})
 })
 
-const addTrain = ((objectID) => {
-	
-	return;
+const addTrain = (async (trainNum, objectID) => {
+	let data = await fetch(`https://api.amtrak.piemadd.com/v1/trains/${trainNum}`, {
+		headers: {
+			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
+			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+			'Accept-Language': 'en-US,en;q=0.5',
+			'Connection': 'keep-alive',
+			'Upgrade-Insecure-Requests': '1',
+			'Sec-Fetch-Dest': 'document',
+			'Sec-Fetch-Mode': 'navigate',
+			'Sec-Fetch-Site': 'none',
+			'Sec-Fetch-User': '?1',
+			'Pragma': 'no-cache',
+			'Cache-Control': 'no-cache',
+			'TE': 'trailers'
+		}
+	}).then(response => response.json()).then((data) => {
+		return data;
+	})
+	//why am i not using forEach? cuz ur mom
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].objectID == objectID) {
+			localStorage.setItem(objectID, JSON.stringify(data[i]));
+			break;
+		}
+	}
+	window.location.replace("/");
 })
