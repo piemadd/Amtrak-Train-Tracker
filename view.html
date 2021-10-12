@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<link rel='preconnect' href='https://fonts.googleapis.com'>
 		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-		<link href='https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap' rel="preload" as="style">
 
 		<link href='css/style.css' rel='stylesheet'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -11,15 +11,19 @@
 	</head>
 	<body>
 		<header>
-			<h2><a href="/">Back</a></h2>
-			<h1>Trains</h1>
+			<h2 class="clickable"><a href="/">Back</a></h2>
+			<h1>Train</h1>
 			<h2></h2> <!-- don't ask -->
 		</header>
 
-		<main id="trains_holder">
-			<article class='add'>
-				<div>Stations</div>
-			</article>
+		<article id="trains_holder" style="margin: 10px; margin-bottom: 15px; max-width: 400px;" class="train-ind">
+		</article>
+
+		<header style="background-color: rgba(0, 0, 0, 0); padding-top: 5px; padding-bottom: 5px; ">
+			<h1>Stations</h1>
+		</header>
+		
+		<main id="stations_holder">
 		</main>
 		<script src="scripts/indtrain.js"></script>
 	</body>

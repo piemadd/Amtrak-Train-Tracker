@@ -75,6 +75,22 @@ main {
 	gap: 10px;
 }
 
+main.train-ind-page {
+	overflow-y: show;
+}
+
+[onclick], a, .clickable {
+    cursor: pointer;
+}
+
+[onclick]:hover, a:hover, .clickable:hover {
+	filter: brightness(1.1);
+}
+
+[onclick]:hover {
+	transform: scale(1.025);
+}
+
 article {
 	transition: all .1s ease-in-out;
 	background: var(--bg-secondary);
@@ -83,6 +99,10 @@ article {
 	display: flex;
 	flex-direction: row;
 	gap: 14px;
+}
+
+.train-ind {
+	overflow-y: visible;
 }
 
 article.add {

@@ -1,4 +1,4 @@
-const staticPATT = "dev-coffee-site-v1"
+const staticPATT = "piero-amtrak-train-tracker-v1"
 const assets = [
 	"/",
 	"/index.html",

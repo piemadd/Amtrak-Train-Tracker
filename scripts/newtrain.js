@@ -87,5 +87,5 @@ const addTrain = (async (trainNum, objectID) => {
 			break;
 		}
 	}
-	window.location.replace("/");
+	window.location.href = "/";
 })

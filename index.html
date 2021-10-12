@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<link rel='preconnect' href='https://fonts.googleapis.com'>
 		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-		<link href='https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap' rel="preload" as="style">
 
 		<link href='css/style.css' rel='stylesheet'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -21,11 +21,11 @@
 		<header>
 			<h2></h2>
 			<h1>Trains</h1>
-			<h2><a href="/about.html">About</a></h2> <!-- don't ask -->
+			<h2 class="clickable"><a href="/about.html">About</a></h2> <!-- don't ask -->
 		</header>
 
 		<main id="trains_holder">
-			<article class='add' onclick="window.location.replace('/new.html');">
+			<article class='add' onclick="window.location.href = '/new.html';">
 				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M78.83333,21.5v57.33333h-57.33333v14.33333h57.33333v57.33333h14.33333v-57.33333h57.33333v-14.33333h-57.33333v-57.33333z"></path></g></g></svg>
 				<div>Add a Train</div>
 			</article>
