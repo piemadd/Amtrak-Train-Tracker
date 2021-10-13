@@ -34,6 +34,15 @@ a {
 	text-decoration: none;
 }
 
+p > a {
+	color: var(--on-time);
+}
+
+.text-block {
+	padding: 10px;
+	overflow: scroll;
+}
+
 h1, h2, h3, h4, h5, h6, b {
 	font-weight: 600;
 }
@@ -73,10 +82,6 @@ main {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 	gap: 10px;
-}
-
-main.train-ind-page {
-	overflow-y: show;
 }
 
 [onclick], a, .clickable {
