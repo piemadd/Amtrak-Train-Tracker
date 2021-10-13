@@ -1,5 +1,5 @@
 //initial load, fill list
-fetch('https://api.amtrak.piemadd.com/v1/trains', {
+fetch('https://api.amtrak.cc/v1/trains', {
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -62,7 +62,7 @@ fetch('https://api.amtrak.piemadd.com/v1/trains', {
 })
 
 const addTrain = (async (trainNum, objectID) => {
-	let data = await fetch(`https://api.amtrak.piemadd.com/v1/trains/${trainNum}`, {
+	let data = await fetch(`https://api.amtrak.cc/v1/trains/${trainNum}`, {
 		headers: {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
