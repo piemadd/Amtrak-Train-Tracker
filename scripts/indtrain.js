@@ -1,4 +1,4 @@
-let trains_holder = document.getElementById('trains_holder');
+let trains_holder = document.getElementById('trains_holder_ind');
 let stations_holder = document.getElementById('stations_holder');
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -19,6 +19,12 @@ const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
         return wait(delay).then(() => fetchRetry(url, delay, triesLeft, fetchOptions));
     }
     return fetch(url,fetchOptions).catch(onError);
+})
+
+const yeet = (() => {
+	localStorage.removeItem(train_obj.objectID);
+	console.log('yeet dab')
+	window.location.href='/'	
 })
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
