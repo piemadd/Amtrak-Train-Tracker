@@ -165,3 +165,13 @@ const updateTrains = (() => {
 })
 
 updateTrains();
+
+let ua = navigator.userAgent.toLowerCase();
+let isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+if (isAndroid) {
+	console.log("Android")
+} else if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+	console.log("Mobile but not android ig")
+} else {
+	console.log("Desktop")
+}
