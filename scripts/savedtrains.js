@@ -11,7 +11,20 @@ addButton.remove();
 
 listOfTrains.sort((a, b) => (a.trainNum > b.trainNum) ? 1 : -1)
 
+const wait = ((delay) => {//milliseconds
+    return new Promise((resolve) => setTimeout(resolve, delay));
+})
 
+const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
+    function onError(err){
+        triesLeft = tries - 1;
+        if(!triesLeft){
+            throw err;
+        }
+        return wait(delay).then(() => fetchRetry(url, delay, triesLeft, fetchOptions));
+    }
+    return fetch(url,fetchOptions).catch(onError);
+})
 
 listOfTrains.forEach((train_obj) => {
 	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -85,7 +98,7 @@ const updateTrains = (() => {
 		let data;
 
 		try {
-			data = await fetch(`https://api.amtrak.cc/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, {
+			data = await fetchRetry(`https://api.amtrak.cc/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, 100, 3, {
 				headers: {
 					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 					'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',

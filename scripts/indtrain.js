@@ -6,8 +6,20 @@ const objectID = urlParams.get('train');
 
 let train_obj = JSON.parse(localStorage.getItem(objectID))
 
-console.log(train_obj)
-console.log(localStorage)
+const wait = ((delay) => {//milliseconds
+    return new Promise((resolve) => setTimeout(resolve, delay));
+})
+
+const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
+    function onError(err){
+        triesLeft = tries - 1;
+        if(!triesLeft){
+            throw err;
+        }
+        return wait(delay).then(() => fetchRetry(url, delay, triesLeft, fetchOptions));
+    }
+    return fetch(url,fetchOptions).catch(onError);
+})
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -57,7 +69,6 @@ train_obj.stations.forEach((station) => {
 		let early_late_stat = `(${station.estArrCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
 		while (early_late_stat.length != 0 && early_late_stat.match(/0[0-9]/)) {
-			console.log(early_late_stat.match(/0[0-9]/)[0])
 			early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 		}
 
@@ -69,7 +80,6 @@ train_obj.stations.forEach((station) => {
 		let early_late_stat = `(${station.postCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
 		while (early_late_stat.length != 0 && early_late_stat.match(/0[0-9]/)) {
-			console.log(early_late_stat.match(/0[0-9]/)[0])
 			early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 		}
 
@@ -85,7 +95,6 @@ train_obj.stations.forEach((station) => {
 		let early_late_stat = `(${station.estDepCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
 		while (early_late_stat.length != 0 && early_late_stat.match(/0[0-9]/)) {
-			console.log(early_late_stat.match(/0[0-9]/)[0])
 			early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 		}
 
@@ -96,10 +105,7 @@ train_obj.stations.forEach((station) => {
 
 		let early_late_stat = `(${station.postCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
-		console.log(early_late_stat)
-		console.log(typeof early_late_stat)
 		while (early_late_stat.length != 0 && early_late_stat.match(/0[0-9]/)) {
-			console.log(early_late_stat.match(/0[0-9]/)[0])
 			early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 		}
 
@@ -145,7 +151,7 @@ const updateTrains = (() => {
 		let data;
 
 		try {
-			data = await fetch(`https://api.amtrak.cc/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, {
+			data = await fetchRetry(`https://api.amtrak.cc/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, 100, 3, {
 				headers: {
 					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 					'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',

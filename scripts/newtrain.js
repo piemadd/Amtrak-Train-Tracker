@@ -1,5 +1,20 @@
+const wait = ((delay) => {//milliseconds
+    return new Promise((resolve) => setTimeout(resolve, delay));
+})
+
+const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
+    function onError(err){
+        triesLeft = tries - 1;
+        if(!triesLeft){
+            throw err;
+        }
+        return wait(delay).then(() => fetchRetry(url, delay, triesLeft, fetchOptions));
+    }
+    return fetch(url,fetchOptions).catch(onError);
+})
+
 //initial load, fill list
-fetch('https://api.amtrak.cc/v1/trains', {
+fetchRetry('https://api.amtrak.cc/v1/trains', 100, 3, {
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -62,7 +77,7 @@ fetch('https://api.amtrak.cc/v1/trains', {
 })
 
 const addTrain = (async (trainNum, objectID) => {
-	let data = await fetch(`https://api.amtrak.cc/v1/trains/${trainNum}`, {
+	let data = await fetchRetry(`https://api.amtrak.cc/v1/trains/${trainNum}`, 100, 3, {
 		headers: {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
