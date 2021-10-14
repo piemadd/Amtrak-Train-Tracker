@@ -57,14 +57,14 @@
       "short_name": "View Trains",
       "description": "View the list of trains you're tracking.",
       "url": "/",
-      "icons": [{ "src": "/icons/view.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/icons/view.png", "sizes": "192x192" }]
     },
     {
       "name": "Track New Train",
       "short_name": "New Train",
       "description": "Add a train to the list of trains you're tracking.",
       "url": "/new.html",
-      "icons": [{ "src": "/icons/add.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/images/icons/add.png", "sizes": "192x192" }]
     }
   ]
 }
