@@ -1,7 +1,7 @@
 let listOfTrainsKeys = Object.keys(localStorage)
 
 listOfTrainsKeys = listOfTrainsKeys.filter((item) => {
-	return item.indexOf("settings") !== 0;
+	return (item.indexOf("settings") !== 0 && item.indexOf("train") == 0);
 });
 
 let trains_holder = document.getElementById('trains_holder');
@@ -43,6 +43,7 @@ listOfTrains.forEach((train_obj) => {
 	let sch_dep_obj = new Date(train_obj.origSchDep);
 
 	let font_change = ' number-small';
+
 	if (train_obj.trainNum.toString().length > 2) {
 		font_change = ' number-large';
 	}
@@ -122,24 +123,24 @@ const updateTrains = (() => {
 			})
 
 		} catch {
-			console.log(objectID)
-			console.log(document.getElementById(objectID))
-			localStorage.removeItem(objectID)
-			document.getElementById(objectID).remove();
+			temp_id = objectID.substring(6);
+			console.log("fucky wucky!")
+			console.log(temp_id)
+			console.log(document.getElementById(temp_id))
+			localStorage.removeItem(temp_id)
+			document.getElementById(temp_id).remove();
 			return;
 		}
 
 		let train_obj = {};
 
 		for (let i = 0; i < data.length; i++) {
-			if (data[i].objectID == objectID) {
-				localStorage.setItem(objectID, JSON.stringify(data[i]));
+			if (data[i].objectID == objectID.substring(6)) {
+				localStorage.setItem(`train_${objectID.substring(6)}`, JSON.stringify(data[i]));
 				train_obj = data[i];
 				break;
 			}
 		}
-
-		console.log(Object.keys(train_obj).length)
 
 		let sch_dep_obj = new Date(train_obj.origSchDep);
 
@@ -161,11 +162,11 @@ const updateTrains = (() => {
 
 		<div class='number${font_change}'>${train_obj.trainNum}</div>`;
 
-		let train_card = document.getElementById(objectID);
+		let train_card = document.getElementById(objectID.substring(6));
 
 		train_card.innerHTML = inner_html;
 
-		console.log(`updated ${objectID}`)
+		console.log(`updated ${objectID.substring(6)}`)
 
 	})
 })

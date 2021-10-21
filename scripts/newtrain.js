@@ -98,7 +98,7 @@ const addTrain = (async (trainNum, objectID) => {
 	//why am i not using forEach? cuz ur mom
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].objectID == objectID) {
-			localStorage.setItem(objectID, JSON.stringify(data[i]));
+			localStorage.setItem(`train_${objectID}`, JSON.stringify(data[i]));
 			break;
 		}
 	}
