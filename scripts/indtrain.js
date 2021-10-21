@@ -4,7 +4,7 @@ let stations_holder = document.getElementById('stations_holder');
 const urlParams = new URLSearchParams(window.location.search);
 const objectID = urlParams.get('train');
 
-let train_obj = JSON.parse(localStorage.getItem(objectID))
+let train_obj = JSON.parse(localStorage.getItem(`train_${objectID}`))
 
 const wait = ((delay) => {//milliseconds
     return new Promise((resolve) => setTimeout(resolve, delay));
@@ -22,7 +22,7 @@ const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
 })
 
 const yeet = (() => {
-	localStorage.removeItem(train_obj.objectID);
+	localStorage.removeItem(`train_${train_obj.objectID}`);
 	console.log('yeet dab')
 	window.location.href='/'	
 })
@@ -153,13 +153,13 @@ const updateTrains = (() => {
 		'No Data': 'completed',
 	}
 
-	let listOfTrains = Object.keys(localStorage)
+	let listOfTrainsKeys = Object.keys(localStorage)
 
-	listOfTrains = listOfTrains.filter((item) => {
-		return item.indexOf("settings") !== 0;
+	listOfTrainsKeys = listOfTrainsKeys.filter((item) => {
+		return (item.indexOf("settings") !== 0 && item.indexOf("train") == 0);
 	});
 
-	listOfTrains.forEach(async (objectID) => {
+	listOfTrainsKeys.forEach(async (objectID) => {
 		let data;
 
 		try {
@@ -191,7 +191,8 @@ const updateTrains = (() => {
 
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].objectID == objectID) {
-				localStorage.setItem(objectID, JSON.stringify(data[i]));
+				objectID.substring(6)
+				localStorage.setItem(`train_${objectID}`, JSON.stringify(data[i]));
 				train_obj = data[i];
 				break;
 			}
