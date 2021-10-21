@@ -110,6 +110,14 @@ article {
 	overflow-y: visible;
 }
 
+.ads-box {
+	/*background-color: red;*/
+	height: 10%;
+	width: 100%;
+	top: 90%;
+	position: absolute;
+}
+
 article.add {
 	gap: 5px;
 	display: flex;
