@@ -111,8 +111,7 @@ article {
 }
 
 .ads-box {
-	/*background-color: red;*/
-	height: 10%;
+	max-height: 10%;
 	width: 100%;
 	top: 90%;
 	position: absolute;
