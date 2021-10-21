@@ -1,9 +1,13 @@
-let listOfTrains = Object.values(localStorage)
+let listOfTrainsKeys = Object.keys(localStorage)
+
+listOfTrainsKeys = listOfTrainsKeys.filter((item) => {
+	return item.indexOf("settings") !== 0;
+});
 
 let trains_holder = document.getElementById('trains_holder');
 
-listOfTrains = listOfTrains.map((raw) => {
-	return JSON.parse(raw);
+listOfTrains = listOfTrainsKeys.map((key) => {
+	return JSON.parse(localStorage.getItem(key));
 })
 
 let addButton = document.getElementsByClassName('add')[0];
@@ -94,7 +98,7 @@ const updateTrains = (() => {
 		'No Data': 'completed',
 	}
 
-	Object.keys(localStorage).forEach(async (objectID) => {
+	listOfTrainsKeys.forEach(async (objectID) => {
 		let data;
 
 		try {
@@ -118,8 +122,10 @@ const updateTrains = (() => {
 			})
 
 		} catch {
+			console.log(objectID)
+			console.log(document.getElementById(objectID))
 			localStorage.removeItem(objectID)
-			document.getElementById(train_obj).remove();
+			document.getElementById(objectID).remove();
 			return;
 		}
 

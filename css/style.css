@@ -92,7 +92,7 @@ main {
 	filter: brightness(1.1);
 }
 
-[onclick]:hover {
+[onclick]:hover:not(h2) {
 	transform: scale(1.025);
 }
 
@@ -116,6 +116,24 @@ article.add {
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
+}
+
+article.settingselector {
+	display: flex;
+	flex-direction: row;
+}
+
+article.settingselector * {
+	flex: 1;
+}
+
+article.settingselector select {
+	background-color: var(--bg-tertiary);
+	border-radius: 10px;
+	border: 1px solid var(--fg-primary);
+	color: var(--fg-primary);
+	font-family: 'Public Sans', sans-serif;
+	padding: 10px;
 }
 
 .new_select:hover {

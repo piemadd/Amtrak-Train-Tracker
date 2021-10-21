@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel='preconnect' href='https://fonts.googleapis.com'>
+		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+		<link href='https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap' rel="preload" as="style">
+
+		<link href='css/style.css' rel='stylesheet'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<title>Amtrak Tracker</title>
+	</head>
+	<body>
+		<header>
+			<h2 class="clickable"><a onclick="window.history.go(-1); return false;">Back</a></h2>
+			<h1>Settings</h1>
+			<h2 onclick="window.location.href = '/about.html';" class="clickable">About</h2> <!-- don't ask -->
+		</header>
+		<main id="trains_holder">
+			
+			<article class="settingselector">
+				<label for="tz">Displaying Timezone: </label>
+
+				<select name="tz" id="tz" onchange="changeTZ()">
+					<option value="device">Device Time Zone (default)</option>
+					<option disabled value="train">Train Time Zone</option>
+					<option disabled value="both">Both Time Zones</option>
+				</select>
+
+				
+			</article>
+
+			<article class="settingselector">
+				<label for="theme">App <br>Theme: </label>
+
+				<select name="theme" id="theme">
+					<option value="device">Dark Theme (default)</option>
+					<option disabled value="train">No Light Theme for You</option>
+				</select>
+			
+			</article>
+
+			<article>
+				Note: These are a work in progress and don't currently affect anything.
+			</article>
+			
+		</main>
+		
+		<script src="scripts/settingsmanager.js"></script>
+	</body>
+</html>

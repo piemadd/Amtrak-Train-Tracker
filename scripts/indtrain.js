@@ -153,7 +153,13 @@ const updateTrains = (() => {
 		'No Data': 'completed',
 	}
 
-	Object.keys(localStorage).forEach(async (objectID) => {
+	let listOfTrains = Object.keys(localStorage)
+
+	listOfTrains = listOfTrains.filter((item) => {
+		return item.indexOf("settings") !== 0;
+	});
+
+	listOfTrains.forEach(async (objectID) => {
 		let data;
 
 		try {
