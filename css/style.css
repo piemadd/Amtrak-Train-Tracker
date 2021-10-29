@@ -112,6 +112,7 @@ article {
 }
 
 .ads-box {
+	show: none;
 	max-height: 10%;
 	width: 100%;
 	top: 90%;
