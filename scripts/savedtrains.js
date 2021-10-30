@@ -127,7 +127,7 @@ const updateTrains = (() => {
 			console.log("fucky wucky!")
 			console.log(temp_id)
 			console.log(document.getElementById(temp_id))
-			localStorage.removeItem(temp_id)
+			localStorage.removeItem(`train_${temp_id}`)
 			document.getElementById(temp_id).remove();
 			return;
 		}
@@ -142,7 +142,18 @@ const updateTrains = (() => {
 			}
 		}
 
+		if (Object.keys(train_obj).length == 0) {
+			temp_id = objectID.substring(6);
+			console.log("fucky wucky!")
+			console.log(temp_id)
+			console.log(document.getElementById(temp_id))
+			localStorage.removeItem(`train_${temp_id}`)
+			document.getElementById(temp_id).remove();
+		}
+
 		let sch_dep_obj = new Date(train_obj.origSchDep);
+
+		console.log(train_obj)
 
 		let font_change = ' number-small';
 		if (train_obj.trainNum.toString().length > 2) {
