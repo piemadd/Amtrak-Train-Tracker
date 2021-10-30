@@ -126,7 +126,7 @@ train_obj.stations.forEach((station) => {
 				<h3>${station.code}</h3>
 				<div class="status ${statuses[station.stationTimely]}">${station.stationTimely}</div>
 			</div>
-			<p class="route">${months[station_date.getMonth()]} ${station_date.getDay()}, ${station_date.getFullYear()}</p>
+			<p class="route">${months[station_date.getMonth()]} ${station_date.getDate()}, ${station_date.getFullYear()}</p>
 			<p class="route">${est_act} Arrival/Departure:</p>
 			${arrival_est_act}
 			${departure_est_act}
