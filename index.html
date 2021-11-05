@@ -7,8 +7,27 @@
 
 		<link href='css/style.css' rel='stylesheet'>
 		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		
+		<!-- HTML Meta Tags -->
 		<title>Amtrak Tracker</title>
 
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content="https://amtrak.cc/">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Amtrak Tracker">
+		<meta property="og:description" content="A simple and lightweight website and PWA to track Amtrak Trains.">
+		<meta property="og:image" content="https://amtrak.cc/images/opengraph.png">
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:domain" content="amtrak.cc">
+		<meta property="twitter:url" content="https://amtrak.cc/">
+		<meta name="twitter:title" content="Amtrak Tracker">
+		<meta name="twitter:description" content="A simple and lightweight website and PWA to track Amtrak Trains.">
+		<meta name="twitter:image" content="https://amtrak.cc/images/opengraph.png">
+
+		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+    
 		<link rel="manifest" href="manifest.json" />
 		<!-- ios support -->
 		<link rel="apple-touch-icon" href="images/icons/icon-72.png" />
@@ -38,14 +57,14 @@
 			<h2 class="clickable"><a href="/settings.html">Settings</a></h2> <!-- don't ask -->
 		</header>
 
-		<main  style="/*margin-bottom: 10vh;*/" id="trains_holder">
+		<main id="trains_holder">
 			<article class='add' onclick="window.location.href = '/new.html';">
 				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 172 172" style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M78.83333,21.5v57.33333h-57.33333v14.33333h57.33333v57.33333h14.33333v-57.33333h57.33333v-14.33333h-57.33333v-57.33333z"></path></g></g></svg>
 				<div>Add a Train</div>
 			</article>
 		</main>
 		<script src="scripts/savedtrains.js"></script>
-		<div class="ads-box">
-		</div>
+		<!--<div class="ads-box">
+		</div>-->
 	</body>
 </html>
