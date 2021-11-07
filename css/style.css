@@ -1,7 +1,7 @@
 :root {
-	--bg-primary: #212529;
-	--bg-secondary: #343A40;
-	--bg-tertiary: #495057;
+	--bg-primary: #151718;
+	--bg-secondary: rgb(40, 43, 46);
+	--bg-tertiary: #2e3031;
 
 	--fg-primary: #FFFFFF;
 	--fg-secondary: #ADB5BD;
