@@ -69,6 +69,8 @@ fetchRetry('https://api.amtrak.cc/v1/trains', 100, 3, {
 
 			train_card.setAttribute("onclick", `addTrain(${train_obj.trainNum}, ${train_obj.objectID})`);
 
+			//train_card.setAttribute("id", train_obj.);
+
 			train_card.innerHTML = inner_html;
 
 			trains_holder.appendChild(train_card)

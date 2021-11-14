@@ -136,13 +136,18 @@ article.settingselector * {
 	flex: 1;
 }
 
-article.settingselector select {
+article.settingselector select,input {
 	background-color: var(--bg-tertiary);
 	border-radius: 10px;
-	border: 1px solid var(--fg-primary);
+	border: 0.1px solid var(--fg-secondary);
 	color: var(--fg-primary);
 	font-family: 'Public Sans', sans-serif;
 	padding: 10px;
+}
+
+article.settingselector input {
+	align-self: center;
+	max-height: 40px;
 }
 
 .new_select:hover {
