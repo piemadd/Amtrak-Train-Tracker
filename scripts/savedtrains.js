@@ -63,7 +63,7 @@ listOfTrains.forEach((train_obj) => {
 
 	let train_card = document.createElement('article');
 
-	train_card.setAttribute("onclick", `window.location.href = "/view.html?train=${train_obj.objectID}"`);
+	train_card.setAttribute("onclick", `window.location.href = "/view?train=${train_obj.objectID}"`);
 
 	train_card.setAttribute("id", train_obj.objectID);
 
