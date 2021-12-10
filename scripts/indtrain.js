@@ -44,8 +44,15 @@ const currentTimeCode = ((trainTimeZone) => {
 
 //returns " (HH:MM TD TZT)" if show both is selected
 const altTime = ((date) => {
+
+	let tz = train_obj.trainTimeZone
+
+	if (tz = "PST") {
+		tz = "PST8PDT";
+	}
+
 	if (localStorage.getItem('settings_tz') == 2) {
-		date = convertTZ(date, train_obj.trainTimeZone)
+		date = convertTZ(date, tz)
 
 		return ` (${date.getHours() % 12 || 12}:${date.getMinutes().toString().padStart(2, '0')} ${(date.getHours() >= 12) ? "PM" : "AM"} ${train_obj.trainTimeZone})`
 	} else {
@@ -69,8 +76,6 @@ const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
     }
     return fetch(url,fetchOptions).catch(onError);
 })
-
-console.log(!(Object.keys(localStorage).includes(`train_${objectID}`)))
 
 let train_obj = {}
 
@@ -174,8 +179,6 @@ updateTrainsIDKFUCKYOU().then(() => {
 		let arrival_est_act = '';
 		let departure_est_act = '';
 		let est_act = '';
-
-		console.log(currentTimeCode(train_obj.trainTimeZone))
 
 		if (station.estArr) {
 			est_act = 'Estimated';
