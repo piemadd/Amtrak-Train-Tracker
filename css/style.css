@@ -78,6 +78,7 @@ header h2 {
 	align-self: flex-end;
 	text-align: left;
 	flex: 1;
+	padding-bottom: 2px;
 }
 
 main {
