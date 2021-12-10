@@ -45,6 +45,8 @@ const currentTimeCode = ((trainTimeZone) => {
 //returns " (HH:MM TD TZT)" if show both is selected
 const altTime = ((date) => {
 	if (localStorage.getItem('settings_tz') == 2) {
+		date = convertTZ(date, train_obj.trainTimeZone)
+
 		return ` (${date.getHours() % 12 || 12}:${date.getMinutes().toString().padStart(2, '0')} ${(date.getHours() >= 12) ? "PM" : "AM"} ${train_obj.trainTimeZone})`
 	} else {
 		return '';
