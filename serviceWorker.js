@@ -92,7 +92,7 @@ workbox.routing.registerRoute(
     ],
   })
 );
-
+/*
 workbox.routing.registerRoute(
   ({event}) => event.request.destination === 'font',
   new workbox.strategies.StaleWhileRevalidate({
@@ -104,3 +104,4 @@ workbox.routing.registerRoute(
     ],
   })
 );
+*/
