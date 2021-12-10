@@ -56,7 +56,7 @@ fetchRetry('https://api.amtrak.cc/v1/stations', 100, 3, {
 				<div class='status ${statuses[station_obj.trainTimely]}'>${station_obj.trainTimely}</div>
 			</div>
 			<p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()}</p>
-			<p class='route'>${station_obj.origCode} &rarr; ${station_obj.destCode}</p>
+			<p class='route'>${station_obj.origCode} --> ${station_obj.destCode}</p>
 			<p class='location'><span class='tag'>Current Destination:</span> ${station_obj.eventCode}</p>
 		</div>`;
 
