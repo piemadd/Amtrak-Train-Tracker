@@ -11,9 +11,9 @@ listOfTrains = listOfTrainsKeys.map((key) => {
 })
 
 let addButton = document.getElementsByClassName('add')[0];
-let allButton = document.getElementsByClassName('add')[1];
+//let allButton = document.getElementsByClassName('add')[1];
 addButton.remove();
-allButton.remove();
+//allButton.remove();
 
 listOfTrains.sort((a, b) => (a.trainNum > b.trainNum) ? 1 : -1)
 
@@ -87,7 +87,7 @@ listOfTrains.forEach((train_obj) => {
 })
 
 trains_holder.appendChild(addButton);
-trains_holder.appendChild(allButton);
+//trains_holder.appendChild(allButton);
 
 setInterval(function() {
 	updateTrains()
