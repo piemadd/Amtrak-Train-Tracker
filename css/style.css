@@ -10,7 +10,8 @@
 	--status: #1864AB;
 	--on-time: #1864AB;
 	--early: #2B8A3E;
-	--late: #C92A2A;
+	/*--late: #C92A2A;*/
+	--late: #a832cc;
 	--complete: #212529;
 }
 
