@@ -139,18 +139,34 @@ article.settingselector * {
 	flex: 1;
 }
 
+::-webkit-scrollbar-track {
+	background: var(--bg-tertiary)
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--bg-primary);
+}
+
 article.settingselector select,input {
+	display: flex;
+	align-self: center;
+	scrollbar-color: var(--bg-primary) var(--bg-secondary);
 	background-color: var(--bg-tertiary);
 	border-radius: 10px;
-	border: 0.1px solid var(--fg-secondary);
+	border: 0.1px solid var(--bg-primary);
 	color: var(--fg-primary);
-	font-family: 'Public Sans', sans-serif;
+	font-family: 'Inter', sans-serif;
 	padding: 10px;
+}
+
+article.settingselector label {
+	display: flex;
+	align-self: center;
 }
 
 article.settingselector input {
 	align-self: center;
-	max-height: 40px;
 }
 
 .new_select:hover {

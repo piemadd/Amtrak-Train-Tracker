@@ -11,12 +11,18 @@ listOfTrains = listOfTrainsKeys.map((key) => {
 })
 
 let addButton = document.getElementsByClassName('add')[0];
+let allButton = document.getElementsByClassName('add')[1];
 addButton.remove();
+allButton.remove();
 
 listOfTrains.sort((a, b) => (a.trainNum > b.trainNum) ? 1 : -1)
 
 const wait = ((delay) => {//milliseconds
     return new Promise((resolve) => setTimeout(resolve, delay));
+})
+
+const convertTZ = ((date, tzString) => {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
 })
 
 const fetchRetry = ((url, delay, tries, fetchOptions = {}) => {
@@ -42,10 +48,18 @@ listOfTrains.forEach((train_obj) => {
 	}
 	let sch_dep_obj = new Date(train_obj.origSchDep);
 
+	if (localStorage.getItem('settings_tz') == 1) {
+		sch_dep_obj = convertTZ(sch_dep_obj, train_obj.trainTimeZone);
+	}
+
 	let font_change = ' number-small';
 
 	if (train_obj.trainNum.toString().length > 2) {
 		font_change = ' number-large';
+	}
+
+	if (train_obj.velocity == null) {
+		train_obj.velocity = 0;
 	}
 
 	let inner_html = `
@@ -73,6 +87,7 @@ listOfTrains.forEach((train_obj) => {
 })
 
 trains_holder.appendChild(addButton);
+trains_holder.appendChild(allButton);
 
 setInterval(function() {
 	updateTrains()
@@ -153,11 +168,19 @@ const updateTrains = (() => {
 
 		let sch_dep_obj = new Date(train_obj.origSchDep);
 
+		if (localStorage.getItem('settings_tz') == 1) {
+			sch_dep_obj = convertTZ(sch_dep_obj, train_obj.trainTimeZone);
+		}
+
 		console.log(train_obj)
 
 		let font_change = ' number-small';
 		if (train_obj.trainNum.toString().length > 2) {
 			font_change = ' number-large';
+		}
+
+		if (train_obj.velocity == null) {
+			train_obj.velocity = 0;
 		}
 
 		let inner_html = `

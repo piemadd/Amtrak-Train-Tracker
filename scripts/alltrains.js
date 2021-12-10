@@ -125,7 +125,7 @@ fetchRetry('https://api.amtrak.cc/v1/trains', 100, 3, {
 
 			let train_card = document.createElement('article');
 
-			train_card.setAttribute("onclick", `addTrain(${train_obj.trainNum}, ${train_obj.objectID})`);
+			//train_card.setAttribute("onclick", `addTrain(${train_obj.trainNum}, ${train_obj.objectID})`);
 
 			let stations = train_obj.stations;
 

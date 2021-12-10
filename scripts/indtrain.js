@@ -1,3 +1,56 @@
+const convertTZ = ((date, tzString) => {
+    return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
+})
+
+const isDstObserved = (() => {
+	let date = new Date();
+
+	let year = date.getFullYear();
+	let dst_start = new Date(year, 2, 14);
+	let dst_end = new Date(year, 10, 7);
+	dst_start.setDate(14 - dst_start.getDay()); // adjust date to 2nd Sunday
+	dst_end.setDate(7 - dst_end.getDay()); // adjust date to the 1st Sunday
+
+	return (date >= dst_start && date < dst_end);
+})
+
+const currentTimeCode = ((trainTimeZone) => {
+	const date = new Date();
+
+	if (localStorage.getItem('settings_tz') == 1) {
+		return trainTimeZone;
+	}
+
+	const standard = {
+		300: "EST",
+		360: "CST",
+		420: "MST",
+		480: "PST"
+	}
+
+	const daylight = {
+		240: "EDT",
+		300: "CDT",
+		360: "MDT",
+		420: "PDT"
+	}
+
+	if (isDstObserved()) {
+		return daylight[date.getTimezoneOffset()];
+	} else {
+		return standard[date.getTimezoneOffset()];
+	}
+})
+
+//returns " (HH:MM TD TZT)" if show both is selected
+const altTime = ((date) => {
+	if (localStorage.getItem('settings_tz') == 2) {
+		return ` (${date.getHours() % 12 || 12}:${date.getMinutes().toString().padStart(2, '0')} ${(date.getHours() >= 12) ? "PM" : "AM"} ${train_obj.trainTimeZone})`
+	} else {
+		return '';
+	}
+})
+
 let trains_holder = document.getElementById('trains_holder_ind');
 let stations_holder = document.getElementById('stations_holder');
 
@@ -78,9 +131,17 @@ updateTrainsIDKFUCKYOU().then(() => {
 
 	let sch_dep_obj = new Date(train_obj.origSchDep);
 
+	if (localStorage.getItem('settings_tz') == 1) {
+		sch_dep_obj = convertTZ(sch_dep_obj, train_obj.trainTimeZone);
+	}
+
 	let font_change = ' number-small';
 	if (train_obj.trainNum.toString().length > 2) {
 		font_change = ' number-large';
+	}
+
+	if (train_obj.velocity == null) {
+		train_obj.velocity = 0;
 	}
 
 	let inner_html = `
@@ -104,13 +165,23 @@ updateTrainsIDKFUCKYOU().then(() => {
 
 		let station_date = new Date(station.schDep || station.schArr);
 
+		if (localStorage.getItem('settings_tz') == 1) {
+			station_date = convertTZ(station_date, train_obj.trainTimeZone);
+		}
+
 		let arrival_est_act = '';
 		let departure_est_act = '';
 		let est_act = '';
 
+		console.log(currentTimeCode(train_obj.trainTimeZone))
+
 		if (station.estArr) {
 			est_act = 'Estimated';
 			let date_arr = new Date(station.estArr);
+
+			if (localStorage.getItem('settings_tz') == 1) {
+				date_arr = convertTZ(date_arr, train_obj.trainTimeZone);
+			}
 
 			let early_late_stat = `(${station.estArrCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
@@ -118,10 +189,14 @@ updateTrainsIDKFUCKYOU().then(() => {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${early_late_stat}</p>`
+			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_arr)} ${early_late_stat}</p>`
 		} else if (station.postArr) {
 			est_act = 'Actual';
 			let date_arr = new Date(station.postArr);
+
+			if (localStorage.getItem('settings_tz') == 1) {
+				date_arr = convertTZ(date_arr, train_obj.trainTimeZone);
+			}
 
 			let early_late_stat = `(${station.postCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
@@ -129,7 +204,7 @@ updateTrainsIDKFUCKYOU().then(() => {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${early_late_stat}</p>`
+			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_arr)} ${early_late_stat}</p>`
 		} else {
 			arrival_est_act = ''
 		}
@@ -138,16 +213,24 @@ updateTrainsIDKFUCKYOU().then(() => {
 			est_act = 'Estimated';
 			let date_dep = new Date(station.estDep);
 
+			if (localStorage.getItem('settings_tz') == 1) {
+				date_dep = convertTZ(date_dep, train_obj.trainTimeZone);
+			}
+
 			let early_late_stat = `(${station.estDepCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
 			while (early_late_stat.length != 0 && early_late_stat.match(/0[0-9]/)) {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${early_late_stat}</p>`
+			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_dep)} ${early_late_stat}</p>`
 		} else if (station.postDep) {
 			est_act = 'Actual';
 			let date_dep = new Date(station.postDep);
+
+			if (localStorage.getItem('settings_tz') == 1) {
+				date_dep = convertTZ(date_dep, train_obj.trainTimeZone);
+			}
 
 			let early_late_stat = `(${station.postCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
@@ -155,9 +238,13 @@ updateTrainsIDKFUCKYOU().then(() => {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${early_late_stat}</p>`
+			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_dep)} ${early_late_stat}</p>`
 		} else {
 			departure_est_act = ''
+		}
+
+		if (train_obj.velocity == null) {
+			train_obj.velocity = 0;
 		}
 
 		let inner_html = `
@@ -269,9 +356,17 @@ const updateTrains = (() => {
 		if (train_obj.objectID == urlParams.get('train')) {
 			let sch_dep_obj = new Date(train_obj.origSchDep);
 
+			if (localStorage.getItem('settings_tz') == 1) {
+				sch_dep_obj = convertTZ(sch_dep_obj, train_obj.trainTimeZone);
+			}
+
 			let font_change = ' number-small';
 			if (train_obj.trainNum.toString().length > 2) {
 				font_change = ' number-large';
+			}
+
+			if (train_obj.velocity == null) {
+				train_obj.velocity = 0;
 			}
 
 			let inner_html = `
