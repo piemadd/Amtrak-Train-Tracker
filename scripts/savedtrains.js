@@ -49,17 +49,17 @@ listOfTrains.forEach((train_obj) => {
 	}
 
 	let inner_html = `
-	<div class='meta'>
-		<div class='title'>
-			<h3>${train_obj.routeName}</h3>
-			<div class='status ${statuses[train_obj.trainTimely]}'>${train_obj.trainTimely}</div>
+		<div class='meta'>
+			<div class='title'>
+				<h3>${train_obj.routeName}</h3>
+				<div class='status ${statuses[train_obj.trainTimely]}'>${train_obj.trainTimely}</div>
+			</div>
+			<p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()} - ${train_obj.origCode} &rarr; ${train_obj.destCode}</p>
+			<p class='route'><span class='tag'>Current Speed: </span>${train_obj.velocity.toFixed(2)} mph</p>
+			<p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventCode}</p>
 		</div>
-		<p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()}</p>
-		<p class='route'>${train_obj.origCode} &rarr; ${train_obj.destCode}</p>
-		<p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventCode}</p>
-	</div>
 
-	<div class='number${font_change}'>${train_obj.trainNum}</div>`;
+		<div class='number${font_change}'>${train_obj.trainNum}</div>`;
 
 	let train_card = document.createElement('article');
 
@@ -166,8 +166,8 @@ const updateTrains = (() => {
 				<h3>${train_obj.routeName}</h3>
 				<div class='status ${statuses[train_obj.trainTimely]}'>${train_obj.trainTimely}</div>
 			</div>
-			<p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()}</p>
-			<p class='route'>${train_obj.origCode} &rarr; ${train_obj.destCode}</p>
+			<p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()} - ${train_obj.origCode} &rarr; ${train_obj.destCode}</p>
+			<p class='route'><span class='tag'>Current Speed: </span>${train_obj.velocity.toFixed(2)} mph</p>
 			<p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventCode}</p>
 		</div>
 
