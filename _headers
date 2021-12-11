@@ -1,4 +1,7 @@
 https://amtrak.cc/*
-	x-clacks-overhead: GNU Terry Pratchett
+	X-Clacks-Overhead: GNU Terry Pratchett
+	Cache-Control: max-age=3600
+	
 https://piero-amtrak-train-tracker.pages.dev/*
-	x-clacks-overhead: GNU Terry Pratchett
+	X-Clacks-Overhead: GNU Terry Pratchett
+	Cache-Control: max-age=3600

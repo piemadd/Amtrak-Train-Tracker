@@ -84,7 +84,6 @@ const updateTrainsIDKFUCKYOU = (async () => {
 
 	if(!(Object.keys(localStorage).includes(`train_${objectID}`))) {
 		try {
-
 			let headers = {
 				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 				'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -342,6 +341,9 @@ const updateTrains = (() => {
 				return data;
 			})
 
+		console.log(data[0].lastValTS)
+		console.log(JSON.parse(localStorage.getItem(objectID)).lastValTS)
+
 		} catch {
 			localStorage.removeItem(objectID)
 			return;
@@ -353,10 +355,12 @@ const updateTrains = (() => {
 			if (data[i].objectID == objectID) {
 				objectID.substring(6)
 				localStorage.setItem(`train_${objectID}`, JSON.stringify(data[i]));
-				train_obj = data[i];
+				train_obj = JSON.parse(localStorage.getItem(`train_${objectID}`));
 				break;
 			}
 		}
+
+		console.log(JSON.parse(localStorage.getItem(objectID)).lastValTS)
 
 		if (train_obj.objectID == urlParams.get('train')) {
 			let sch_dep_obj = new Date(train_obj.origSchDep);
