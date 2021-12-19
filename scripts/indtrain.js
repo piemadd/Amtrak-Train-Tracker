@@ -133,6 +133,9 @@ const updateTrainsIDKFUCKYOU = (async () => {
 })
 
 updateTrainsIDKFUCKYOU().then(() => {
+
+	updateTrains();
+
 	train_obj = JSON.parse(localStorage.getItem(`train_${objectID}`))
 
 	let sch_dep_obj = new Date(train_obj.origSchDep);
@@ -275,9 +278,6 @@ updateTrainsIDKFUCKYOU().then(() => {
 	setInterval(function() {
 		location.reload();
 	}, 60 * 1000);
-
-	updateTrains();
-
 })
 
 const wait = ((delay) => {//milliseconds
@@ -351,6 +351,7 @@ const updateTrains = (() => {
 
 		let train_obj = {};
 
+		console.log(data.length)
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].objectID == objectID) {
 				objectID.substring(6)
