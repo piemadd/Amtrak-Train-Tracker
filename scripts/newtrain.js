@@ -49,7 +49,9 @@ fetchRetry('https://api.amtrak.cc/v1/stations/keys', 100, 3, {
         'Cache-Control': 'no-cache',
         'TE': 'trailers'
     }
-}).then(response => Object.keys(response.json())).then(async (data) => {
+}).then(response => response.json()).then(async (data) => {
+  data = Object.keys(data);
+  
 	let stationsHolderThingyIDFK = document.getElementById('station_selector');
 	let topElement = stationsHolderThingyIDFK.firstElementChild;
 
