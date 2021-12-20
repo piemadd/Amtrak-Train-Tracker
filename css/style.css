@@ -56,25 +56,34 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 header {
-	align-items: center;
-	display: flex;
-	background: var(--bg-secondary);
-	position: sticky;
 	padding: 18px;
 	margin-bottom: 4px;
+    background: var(--bg-secondary);
+	display: flex;
+	position: sticky;
+	flex-direction: column;
+}
+
+header > div > input {
+    width: 100%;
+}
+
+header > div {
+    align-items: center;
+	display: flex;
 	flex-direction: row;
 }
 
-header h2:last-child {
+header > div > h2:last-child {
 	text-align: right;
 }
 
-header h1 {
+header > div > h1 {
 	font-size: 1.25rem;
 	align-self: center;
 }
 
-header h2 {
+header > div > h2 {
 	font-size: 1rem;
 	align-self: flex-end;
 	text-align: left;
@@ -139,6 +148,10 @@ article.settingselector {
 
 article.settingselector * {
 	flex: 1;
+}
+
+.searchBoxHolder {
+    margin-top: 12px;
 }
 
 ::-webkit-scrollbar-track {
