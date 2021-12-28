@@ -1,6 +1,6 @@
 {
-	"name": "Amtrak Train Tracker | Piero",
-	"short_name": "Amtrak Tracker",
+	"name": "Amtrak Train Tracker | Amtraker",
+	"short_name": "Amtraker",
 	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#151718",
