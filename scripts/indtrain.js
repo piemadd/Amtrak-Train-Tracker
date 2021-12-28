@@ -161,7 +161,7 @@ updateTrainsIDKFUCKYOU().then(() => {
 		</div>
 		<p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()} - ${train_obj.origCode} --> ${train_obj.destCode}</p>
 		<p class='route'><span class='tag'>Current Speed: </span>${train_obj.velocity.toFixed(2)} mph</p>
-		<p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventCode}</p>
+		<p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventName} (${train_obj.eventCode})</p>
 	</div>
 
 	<div class='number${font_change}'>${train_obj.trainNum}</div>`;
@@ -257,7 +257,7 @@ updateTrainsIDKFUCKYOU().then(() => {
 		let inner_html = `
 			<div class="meta">
 				<div class="title">
-					<h3>${station.code}</h3>
+					<h3>${station.stationName} (${station.code})</h3>
 					<div class="status ${statuses[station.stationTimely]}">${station.stationTimely}</div>
 				</div>
 				<p class="route">${months[station_date.getMonth()]} ${station_date.getDate()}, ${station_date.getFullYear()}</p>

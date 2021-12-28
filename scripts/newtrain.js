@@ -78,7 +78,7 @@ const addTrainBlock = ((train_obj) => {
         </div>
         <p class='route'>${months[sch_dep_obj.getMonth()]} ${sch_dep_obj.getDate()}, ${sch_dep_obj.getFullYear()} - ${train_obj.origCode} --> ${train_obj.destCode}</p>
         <p class='route'><span class='tag'>Current Speed: </span>${train_obj.velocity.toFixed(2)} mph</p>
-        <p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventCode}</p>
+        <p class='location'><span class='tag'>Current Destination:</span> ${train_obj.eventName} (${train_obj.eventCode})</p>
     </div>
 
     <div class='number${font_change}'>${train_obj.trainNum}</div>`;
