@@ -1,11 +1,11 @@
 {
 	"name": "Amtrak Train Tracker | Piero",
 	"short_name": "Amtrak Tracker",
-	"start_url": "",
+	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#151718",
 	"theme_color": "#151718",
-	"orientation": "portrait-primary",
+	"orientation": "any",
 	"prefer_related_applications": true,
 	"related_applications": [
 		{
