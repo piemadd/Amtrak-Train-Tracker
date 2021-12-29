@@ -43,18 +43,24 @@ const currentTimeCode = ((trainTimeZone) => {
 })
 
 //returns " (HH:MM TD TZT)" if show both is selected
-const altTime = ((date) => {
+const altTime = ((date, stationTz) => {
 
-	let tz = train_obj.trainTimeZone
-
-	if (tz = "PST") {
+	//let tz = train_obj.trainTimeZone
+    let tz = stationTz
+    
+	if (tz == "PST") {
 		tz = "PST8PDT";
 	}
+
+    if (tz == "CST") {
+        tz = "America/Chicago" //shit is inconsistent
+    }
+    
 
 	if (localStorage.getItem('settings_tz') == 2) {
 		date = convertTZ(date, tz)
 
-		return ` (${date.getHours() % 12 || 12}:${date.getMinutes().toString().padStart(2, '0')} ${(date.getHours() >= 12) ? "PM" : "AM"} ${train_obj.trainTimeZone})`
+        return ` (${date.getHours() % 12 || 12}:${date.getMinutes().toString().padStart(2, '0')} ${(date.getHours() >= 12) ? "PM" : "AM"} ${stationTz})`
 	} else {
 		return '';
 	}
@@ -189,14 +195,14 @@ updateTrainsIDKFUCKYOU().then(() => {
 			if (localStorage.getItem('settings_tz') == 1) {
 				date_arr = convertTZ(date_arr, train_obj.trainTimeZone);
 			}
-
+            
 			let early_late_stat = `(${station.estArrCmnt.replace(' HR', 'h').replace(' MI', 'm')})`.replace('(ON TIME)', '').replace('LATE', 'Late').replace('EARLY', 'Early')
 
 			while (early_late_stat.length != 0 && early_late_stat.match(/0[0-9]/)) {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_arr)} ${early_late_stat}</p>`
+			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_arr, station.tz)} ${early_late_stat}</p>`
 		} else if (station.postArr) {
 			est_act = 'Actual';
 			let date_arr = new Date(station.postArr);
@@ -211,7 +217,7 @@ updateTrainsIDKFUCKYOU().then(() => {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_arr)} ${early_late_stat}</p>`
+			arrival_est_act = `<p class="location"><span class="tag">Arrival:</span> ${date_arr.getHours() % 12 || 12}:${date_arr.getMinutes().toString().padStart(2, '0')} ${(date_arr.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_arr, station.tz)} ${early_late_stat}</p>`
 		} else {
 			arrival_est_act = ''
 		}
@@ -230,7 +236,7 @@ updateTrainsIDKFUCKYOU().then(() => {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_dep)} ${early_late_stat}</p>`
+			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_dep, station.tz)} ${early_late_stat}</p>`
 		} else if (station.postDep) {
 			est_act = 'Actual';
 			let date_dep = new Date(station.postDep);
@@ -245,7 +251,7 @@ updateTrainsIDKFUCKYOU().then(() => {
 				early_late_stat = early_late_stat.replace(/0[0-9]/, early_late_stat.match(/0[0-9]/)[0][1])
 			}
 
-			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_dep)} ${early_late_stat}</p>`
+			departure_est_act = `<p class="location"><span class="tag">Departure:</span> ${date_dep.getHours() % 12 || 12}:${date_dep.getMinutes().toString().padStart(2, '0')} ${(date_dep.getHours() >= 12) ? "PM" : "AM"} ${currentTimeCode(train_obj.trainTimeZone)}${altTime(date_dep, station.tz)} ${early_late_stat}</p>`
 		} else {
 			departure_est_act = ''
 		}
@@ -341,9 +347,6 @@ const updateTrains = (() => {
 				return data;
 			})
 
-		console.log(data[0].lastValTS)
-		console.log(JSON.parse(localStorage.getItem(objectID)).lastValTS)
-
 		} catch {
 			localStorage.removeItem(objectID)
 			return;
@@ -351,7 +354,6 @@ const updateTrains = (() => {
 
 		let train_obj = {};
 
-		console.log(data.length)
 		for (let i = 0; i < data.length; i++) {
 			if (data[i].objectID == objectID) {
 				objectID.substring(6)
@@ -360,8 +362,6 @@ const updateTrains = (() => {
 				break;
 			}
 		}
-
-		console.log(JSON.parse(localStorage.getItem(objectID)).lastValTS)
 
 		if (train_obj.objectID == urlParams.get('train')) {
 			let sch_dep_obj = new Date(train_obj.origSchDep);
