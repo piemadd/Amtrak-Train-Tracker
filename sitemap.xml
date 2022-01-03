@@ -6,28 +6,28 @@
 	http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 	<url>
-		<loc>https://amtrak.cc/</loc>
-		<lastmod>2021-10-22T00:00:00+00:00</lastmod>
+		<loc>https://amtraker.com/</loc>
+		<lastmod>2022-01-02T00:00:00+00:00</lastmod>
 		<priority>1.00</priority>
 	</url>
 	<url>
-		<loc>https://amtrak.cc/about.html</loc>
-		<lastmod>2021-10-22T00:00:00+00:00</lastmod>
+		<loc>https://amtraker.com/about.html</loc>
+		<lastmod>2022-01-02T00:00:00+00:00</lastmod>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://amtrak.cc/new.html</loc>
-		<lastmod>2021-10-22T00:00:00+00:00</lastmod>
+		<loc>https://amtraker.com/new.html</loc>
+		<lastmod>2022-01-02T00:00:00+00:00</lastmod>
 		<priority>0.80</priority>
 	</url>
 	<url>
-		<loc>https://amtrak.cc/view.html</loc>
-		<lastmod>2021-10-22T00:00:00+00:00</lastmod>
+		<loc>https://amtraker.com/view.html</loc>
+		<lastmod>2022-01-02T00:00:00+00:00</lastmod>
 		<priority>0.60</priority>
 	</url>
 	<url>
-		<loc>https://amtrak.cc/privacy.html</loc>
-		<lastmod>2021-10-22T00:00:00+00:00</lastmod>
+		<loc>https://amtraker.com/privacy.html</loc>
+		<lastmod>2022-01-02T00:00:00+00:00</lastmod>
 		<priority>0.20</priority>
 	</url>
 </urlset>
