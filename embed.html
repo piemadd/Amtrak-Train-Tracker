@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+
+		<link href='css/style.css' rel='stylesheet'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<title>Amtrak Tracker</title>
+	</head>
+	<body>
+
+        <header style="background-color: rgba(0, 0, 0, 0); padding-top: 10px; padding-bottom: 0px; ">
+			<h1 id="titleThingy">Your Train: </h1>
+		</header>
+        
+		<main id="trains_holder" class="train-ind">
+			<article id="trains_holder_ind"></article>
+		</main>
+
+		<header style="background-color: rgba(0, 0, 0, 0); padding-top: 5px; padding-bottom: 5px; ">
+			<h1>Stations</h1>
+		</header>
+		
+		<main id="stations_holder">
+		</main>
+
+		<!--<div class="ads-box"></div>-->
+		<script src="scripts/indtrain.js"></script>
+
+        <script>            
+            let trainTitleBox = document.getElementById("titleThingy");
+
+            //trainTitleBox.innerHTML = "Train Poop"
+        </script>
+	</body>
+</html>
