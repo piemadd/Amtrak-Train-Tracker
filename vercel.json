@@ -16,7 +16,7 @@
     ],
     "redirects":[
         {
-            "source":"/viewtest.html\?train=:path",
+            "source":"/viewtest.html?train=:path",
             "destination":"/viewtest/:path"
         },
         {
