@@ -1,17 +1,24 @@
 {
-    "headers": [
+    "headers":[
         {
-            "source": "/(.*)",
-            "headers": [
+            "source":"/(.*)",
+            "headers":[
                 {
-                    "key" : "Cache-Control",
-                    "value" : "max-age=3600"
+                    "key":"Cache-Control",
+                    "value":"max-age=3600"
                 },
                 {
-                    "key" : "X-Clacks-Overhead",
-                    "value" : "GNU Terry Pratchett"
+                    "key":"X-Clacks-Overhead",
+                    "value":"GNU Terry Pratchett"
                 }
             ]
+        }
+    ],
+    "redirects":[
+        {
+            "source":"/viewtest\\?train=:letrainid",
+            "destination":"/viewtest/letrainid*",
+            "permanent":false
         }
     ]
 }
