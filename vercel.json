@@ -16,12 +16,12 @@
     ],
     "redirects":[
         {
-            "source":"/viewtest.html\\?train=:letrainid",
-            "destination":"/viewtest/:letrainid"
+            "source":"/viewtest.html\\?train=:path",
+            "destination":"/viewtest/:path"
         },
         {
             "source":"/redirect_test/test/:path",
-            "destination":"/redirect_test/yay/:path"
+            "destination":"/viewtest/:path"
         }
     ]
 }
