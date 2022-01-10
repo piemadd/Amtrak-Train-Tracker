@@ -17,8 +17,11 @@
     "redirects":[
         {
             "source":"/viewtest.html\\?train=:letrainid",
-            "destination":"/viewtest/:letrainid*",
-            "permanent":false
+            "destination":"/viewtest/:letrainid"
+        },
+        {
+            "source":"/redirect_test",
+            "destination":"/redirect_test/yay"
         }
     ]
 }
