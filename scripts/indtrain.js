@@ -105,13 +105,13 @@ const updateTrainsIDKFUCKYOU = (async () => {
 				'TE': 'trailers'
 			}
 
-			let ids = await fetchRetry('https://api.amtrak.cc/v1/trains/ids', 100, 3, {
+			let ids = await fetchRetry('https://api.amtraker.com/v1/trains/ids', 100, 3, {
 				headers: headers
 			}).then(response => response.json()).then((data) => {
 				return data;
 			})
 
-			data = await fetchRetry(`https://api.amtrak.cc/v1/trains/${ids[objectID]}`, 100, 3, {
+			data = await fetchRetry(`https://api.amtraker.com/v1/trains/${ids[objectID]}`, 100, 3, {
 				headers: headers
 			}).then(response => response.json()).then((data) => {
 				return data;
@@ -328,7 +328,7 @@ const updateTrains = (() => {
 		let data;
 
 		try {
-			data = await fetchRetry(`https://api.amtrak.cc/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, 100, 3, {
+			data = await fetchRetry(`https://api.amtraker.com/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, 100, 3, {
 				headers: {
 					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 					'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',

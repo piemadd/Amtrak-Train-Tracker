@@ -34,7 +34,7 @@ const stationView = (() => {
 	cssPlace.innerHTML = inner_html;
 })
 
-fetchRetry('https://api.amtrak.cc/v1/stations/keys', 100, 3, {
+fetchRetry('https://api.amtraker.com/v1/stations/keys', 100, 3, {
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -64,7 +64,7 @@ fetchRetry('https://api.amtrak.cc/v1/stations/keys', 100, 3, {
 })
 
 //initial load, fill list
-fetchRetry('https://api.amtrak.cc/v1/trains', 100, 3, {
+fetchRetry('https://api.amtraker.com/v1/trains', 100, 3, {
     headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -145,7 +145,7 @@ fetchRetry('https://api.amtrak.cc/v1/trains', 100, 3, {
 })
 
 const addTrain = (async (trainNum, objectID) => {
-	let data = await fetchRetry(`https://api.amtrak.cc/v1/trains/${trainNum}`, 100, 3, {
+	let data = await fetchRetry(`https://api.amtraker.com/v1/trains/${trainNum}`, 100, 3, {
 		headers: {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
 			'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
