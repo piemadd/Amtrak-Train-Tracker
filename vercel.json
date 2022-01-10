@@ -20,8 +20,8 @@
             "destination":"/viewtest/:letrainid"
         },
         {
-            "source":"/redirect_test",
-            "destination":"/redirect_test/yay"
+            "source":"/redirect_test/test/:path",
+            "destination":"/redirect_test/yay/:path"
         }
     ]
 }
