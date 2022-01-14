@@ -16,10 +16,6 @@
     ],
     "redirects":[
         {
-            "source":"/viewtest.html?train=:path",
-            "destination":"/viewtest/:path"
-        },
-        {
             "source":"/redirect_test/test/:path",
             "destination":"/viewtest/:path"
         }
