@@ -120,7 +120,7 @@ const updateTrains = (() => {
 		try {
 			data = await fetchRetry(`https://api.amtraker.com/v1/trains/${JSON.parse(localStorage.getItem(objectID)).trainNum}`, 100, 3, {
 				headers: {
-					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0',
+					'User-Agent': 'AmtrakerUI/1.0 (Fart Poop 69.420; Win69; x8008; rvp00p;)',
 					'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language': 'en-US,en;q=0.5',
 					'Connection': 'keep-alive',
