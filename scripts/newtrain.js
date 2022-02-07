@@ -83,7 +83,8 @@ const addTrainBlock = ((train_obj) => {
 
     <div class='number${font_change}'>${train_obj.trainNum}</div>`;
 
-    let train_card = document.createElement('article');
+    let train_card = document.createElement('a');
+    train_card.classList.add("card");
 
     train_card.setAttribute("onclick", `addTrain(${train_obj.trainNum}, ${train_obj.objectID})`);
 

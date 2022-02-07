@@ -1,3 +1,9 @@
+let dummyTrains = document.getElementsByClassName('dummy')
+let dummyTrainsLength = dummyTrains.length
+for (let i = 0; i < dummyTrainsLength; i++) {
+    dummyTrains[0].remove()
+}
+
 let listOfTrainsKeys = Object.keys(localStorage)
 
 listOfTrainsKeys = listOfTrainsKeys.filter((item) => {
@@ -75,9 +81,11 @@ listOfTrains.forEach((train_obj) => {
 
 		<div class='number${font_change}'>${train_obj.trainNum}</div>`;
 
-	let train_card = document.createElement('article');
+	let train_card = document.createElement('a');
 
-	train_card.setAttribute("onclick", `window.location.href = "/view.html?train=${train_obj.objectID}"`);
+	//train_card.setAttribute("onclick", `window.location.href = "/view.html?train=${train_obj.objectID}"`);
+    train_card.setAttribute("href", `/view.html?train=${train_obj.objectID}`);
+    train_card.classList.add("card");
 
 	train_card.setAttribute("id", train_obj.objectID);
 

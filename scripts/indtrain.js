@@ -1,3 +1,9 @@
+let dummyTrains = document.getElementsByClassName('dummy')
+let dummyTrainsLength = dummyTrains.length
+for (let i = 0; i < dummyTrainsLength; i++) {
+    dummyTrains[0].remove()
+}
+
 const convertTZ = ((date, tzString) => {
     return new Date((typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {timeZone: tzString}));   
 })
@@ -272,8 +278,8 @@ updateTrainsIDKFUCKYOU().then(() => {
 				${departure_est_act}
 			</div>`
 
-		let train_card = document.createElement('article');
-
+		let train_card = document.createElement('a');
+        train_card.classList.add("card");
 		train_card.setAttribute("id", station.code);
 
 		train_card.innerHTML = inner_html;

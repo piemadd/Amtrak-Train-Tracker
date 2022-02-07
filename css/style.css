@@ -111,7 +111,7 @@ main {
 	transform: scale(1.025);
 }
 
-article {
+.card, article {
 	transition: all .1s ease-in-out;
 	background: var(--bg-secondary);
 	border-radius: 12px;
@@ -133,7 +133,7 @@ article {
 	position: absolute;
 }
 
-article.add {
+.add {
 	gap: 5px;
 	display: flex;
 	align-items: center;
@@ -189,24 +189,24 @@ article.settingselector input {
 	filter: brightness(110%);
 }
 
-article h3 {
+article h3, a h3 {
 	font-size: 1rem;
 }
 
-article .meta {
+.meta {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
 }
 
-article .title {
+.title {
 	display: flex;
 	flex-direction: row;
 	gap: 10px;
 }
 
-article .status {
+.status {
 	background: var(--on-time);
 	height: 22px;
 	border-radius: 11px;
@@ -219,31 +219,31 @@ article .status {
 	margin-top: -2px;
 }
 
-artice .on-time {
+.on-time {
 	background: var(--on-time);
 }
 
-article .late {
+.late {
 	background: var(--late);
 }
 
-article .early {
+.early {
 	background: var(--early);
 }
 
-article .completed {
+.completed {
 	background: var(--complete);
 }
 
-article .route, article .location {
+.route, .location {
 	color: var(--fg-secondary);
 }
 
-article .tag {
+.tag {
 	color: var(--fg-tertiary);
 }
 
-article .number {
+.number {
 	font-weight: 600;
 	background: var(--bg-tertiary);
 	width: 44px;
@@ -256,11 +256,11 @@ article .number {
 	border: 1px solid var(--fg-tertiary);
 }
 
-article .number-small {
+.number-small {
 	font-size: 1.1rem;
 }
 
-article .number-large {
+.number-large {
 	font-size: 0.85rem;
 }
 
