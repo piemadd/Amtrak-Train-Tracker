@@ -115,10 +115,17 @@ main {
 	transition: all .1s ease-in-out;
 	background: var(--bg-secondary);
 	border-radius: 12px;
+    border-width: 1px;
+    border-style: hidden;
+    border-color: var(--fg-primary);
 	padding: 12px;
 	display: flex;
 	flex-direction: row;
 	gap: 14px;
+}
+
+.activeStation {
+    border-style: solid;
 }
 
 .train-ind {

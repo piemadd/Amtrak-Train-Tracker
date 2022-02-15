@@ -280,6 +280,11 @@ updateTrainsIDKFUCKYOU().then(() => {
 
 		let train_card = document.createElement('a');
         train_card.classList.add("card");
+
+        if (station.code == train_obj.eventCode) {
+            train_card.classList.add("activeStation");
+        }
+        
 		train_card.setAttribute("id", station.code);
 
 		train_card.innerHTML = inner_html;
