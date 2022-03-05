@@ -1,3 +1,12 @@
+const adsThing = document.createElement('script');
+
+if (window.location.hostname == 'amtraker.com') {
+    adsThing.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9074000161783128';
+    adsThing.crossorigin = 'anonymous';
+    adsThing.async = '';
+    document.head.appendChild(adsThing);
+}
+
 let dummyTrains = document.getElementsByClassName('dummy')
 let dummyTrainsLength = dummyTrains.length
 for (let i = 0; i < dummyTrainsLength; i++) {
