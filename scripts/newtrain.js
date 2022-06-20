@@ -174,7 +174,8 @@ fetchRetry('https://api.amtraker.com/v1/trains', 100, 3, {
     
     const options = {
         includeScore: true,
-         threshold: 0.4,
+        threshold: 0.4,
+        useExtendedSearch: true,
         keys: ['trainNum', 'routeName', 'aliases', 'stations.code', 'stations.stationName']
     }
     

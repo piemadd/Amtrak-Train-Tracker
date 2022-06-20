@@ -67,7 +67,7 @@ const altTime = ((date, stationTz) => {
 		tz = "PST8PDT";
 	}
 
-    if (tz == "CST") {
+    if (tz == "CST" || tz == "CDT") {
         tz = "America/Chicago" //shit is inconsistent
     }
     
