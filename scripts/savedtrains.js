@@ -110,15 +110,6 @@ setInterval(function() {
 	updateTrains()
 }, 60 * 1000);
 
-if ("serviceWorker" in navigator) {
-	window.addEventListener("load", function() {
-		navigator.serviceWorker
-			.register("/serviceWorker.js")
-			.then(res => console.log("service worker registered"))
-			.catch(err => console.log("service worker not registered", err))
-	})
-}
-
 const updateTrains = (() => {
 
 	const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
